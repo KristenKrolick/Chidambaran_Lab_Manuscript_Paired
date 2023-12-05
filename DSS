@@ -1,0 +1,42 @@
+library(DSS)
+require(bsseq)
+library(dmrseq)
+files <-list.files("/data/path/bismarkcovfiles")
+setwd("/data/path/bismarkcovfiles")
+bismarkBSseq <- read.bismark(files,
+                             loci = NULL,
+                             colData = NULL,
+                             rmZeroCov = FALSE,
+                             strandCollapse = TRUE,
+                             verbose = TRUE)
+#covar dataframe consisting of columns of cell type estimates and rows consisting of each sample:
+## (preop samples 1 through 51 as rows 1 through 51 and then postop samples as rows 52 - 102)
+covar <- read.csv("/data/path/CellTypeCovar_same51Visit1_2.csv")
+Treatment = factor(rep(c("Preop","Postop"),each = 51))
+pair = factor(rep(1:51,2))
+response <- factor(c("Yes", "No", "Yes", "Yes", "Yes", "No", "No", "Yes", "No", "No", "No", "Yes", "Yes", "Yes", "No", "No", "No", "Yes", "No", "No", "Yes", "No", "Yes", "Yes", "No", "No", "Yes", "Yes", "No", "No", "No", "Yes", "No", "No", "No", "Yes", "Yes", "No", "Yes", "No", "Yes", "Yes", "Yes", "Yes", "Yes", "No", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "No", "Yes", "Yes", "Yes", "No", "No", "Yes", "No", "No", "No", "Yes", "Yes", "Yes", "No", "No", "No", "Yes", "No", "No", "Yes", "No", "Yes", "Yes", "No", "No", "Yes", "Yes", "No", "No", "No", "Yes", "No", "No", "No", "Yes", "Yes", "No", "Yes", "No", "Yes", "Yes", "Yes", "Yes", "Yes", "No", "Yes", "Yes", "Yes", "Yes", "Yes"))
+design = data.frame(Treatment, pair, response, covar)
+
+#filter by mincov = 15
+library(methylSig)
+bismarkBSseq_mincov15 = filter_loci_by_coverage(bismarkBSseq, min_count = 15)
+
+#filtering SNPs using http://hgdownload.cse.ucsc.edu/goldenpath/hg38/database/snp150Common.txt.gz 
+setwd("/data/path/Kristen")
+SNP = read.table(gzfile("snp150Common.txt.gz"),sep="\t")
+library(GenomicRanges)
+SNP_GR = makeGRangesFromDataFrame(SNP, keep.extra.columns=FALSE, ignore.strand=FALSE,seqinfo=NULL,seqnames.field="V2",start.field="V3",end.field="V4",strand.field="V7",starts.in.df.are.0based=TRUE)
+#filter bismarkBSseq_mincov15 by SNPs:
+bismarkBSseq_mincov15_noSNP = filter_loci_by_location(bs = bismarkBSseq_mincov15, gr = SNP_GR)
+
+#need to filter bismarkBSseq by chromosome because my analysis is too large to run (The DMLfit function threw this error:"Error: cannot allocate vector of size 914.9 Gb")
+chr1_bismarkBSseq_mincov15_noSNP<- chrSelectBSseq(bismarkBSseq_mincov15_noSNP, seqnames = "chr1", order = TRUE)
+DMLfit = DMLfit.multiFactor(chr1_bismarkBSseq_mincov15, design, formula = ~Treatment + pair + Mono_3 + NK_3 + B_TOTAL + CD4_TOTAL + CD8_TOTAL + GRANULOCYTES_TOTAL)
+dmlTest = DMLtest.multiFactor(DMLfit, term= "Treatment")
+methyl = na.omit(dmlTest)
+methyl$CpG = paste(methyl$chr,sep=".",methyl$pos)
+methyl$fdrs = p.adjust(methyl$pvals, "BH")
+sig_cpgs_chr1 = na.omit(methyl[methyl$fdrs<0.05,])
+write.csv(sig_cpgs_chr1, file = "/data/path/sig_CpGs_chr1_mincov15.csv")
+#reperformed above separately for each chromosome and then put together
+
