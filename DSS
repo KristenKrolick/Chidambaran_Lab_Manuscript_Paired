@@ -17,26 +17,26 @@ pair = factor(rep(1:51,2))
 response <- factor(c("Yes", "No", "Yes", "Yes", "Yes", "No", "No", "Yes", "No", "No", "No", "Yes", "Yes", "Yes", "No", "No", "No", "Yes", "No", "No", "Yes", "No", "Yes", "Yes", "No", "No", "Yes", "Yes", "No", "No", "No", "Yes", "No", "No", "No", "Yes", "Yes", "No", "Yes", "No", "Yes", "Yes", "Yes", "Yes", "Yes", "No", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "No", "Yes", "Yes", "Yes", "No", "No", "Yes", "No", "No", "No", "Yes", "Yes", "Yes", "No", "No", "No", "Yes", "No", "No", "Yes", "No", "Yes", "Yes", "No", "No", "Yes", "Yes", "No", "No", "No", "Yes", "No", "No", "No", "Yes", "Yes", "No", "Yes", "No", "Yes", "Yes", "Yes", "Yes", "Yes", "No", "Yes", "Yes", "Yes", "Yes", "Yes"))
 design = data.frame(Treatment, pair, response, covar)
 
-#filter by mincov = 15
+#filter by mincov = 0
 library(methylSig)
-bismarkBSseq_mincov15 = filter_loci_by_coverage(bismarkBSseq, min_count = 15)
+bismarkBSseq_mincov0 = filter_loci_by_coverage(bismarkBSseq, min_count = 0)
 
 #filtering SNPs using http://hgdownload.cse.ucsc.edu/goldenpath/hg38/database/snp150Common.txt.gz 
 setwd("/data/path/Kristen")
 SNP = read.table(gzfile("snp150Common.txt.gz"),sep="\t")
 library(GenomicRanges)
 SNP_GR = makeGRangesFromDataFrame(SNP, keep.extra.columns=FALSE, ignore.strand=FALSE,seqinfo=NULL,seqnames.field="V2",start.field="V3",end.field="V4",strand.field="V7",starts.in.df.are.0based=TRUE)
-#filter bismarkBSseq_mincov15 by SNPs:
-bismarkBSseq_mincov15_noSNP = filter_loci_by_location(bs = bismarkBSseq_mincov15, gr = SNP_GR)
+#filter bismarkBSseq_mincov0 by SNPs:
+bismarkBSseq_mincov0_noSNP = filter_loci_by_location(bs = bismarkBSseq_mincov0, gr = SNP_GR)
 
 #need to filter bismarkBSseq by chromosome because my analysis is too large to run (The DMLfit function threw this error:"Error: cannot allocate vector of size 914.9 Gb")
-chr1_bismarkBSseq_mincov15_noSNP<- chrSelectBSseq(bismarkBSseq_mincov15_noSNP, seqnames = "chr1", order = TRUE)
-DMLfit = DMLfit.multiFactor(chr1_bismarkBSseq_mincov15, design, formula = ~Treatment + pair + Mono_3 + NK_3 + B_TOTAL + CD4_TOTAL + CD8_TOTAL + GRANULOCYTES_TOTAL)
+chr1_bismarkBSseq<- chrSelectBSseq(bismarkBSseq_mincov0_noSNP, seqnames = "chr1", order = TRUE)
+DMLfit = DMLfit.multiFactor(chr1_bismarkBSseq, design, formula = ~Treatment + pair + Mono_3 + NK_3 + B_TOTAL + CD4_TOTAL + CD8_TOTAL + GRANULOCYTES_TOTAL)
 dmlTest = DMLtest.multiFactor(DMLfit, term= "Treatment")
 methyl = na.omit(dmlTest)
 methyl$CpG = paste(methyl$chr,sep=".",methyl$pos)
 methyl$fdrs = p.adjust(methyl$pvals, "BH")
 sig_cpgs_chr1 = na.omit(methyl[methyl$fdrs<0.05,])
-write.csv(sig_cpgs_chr1, file = "/data/path/sig_CpGs_chr1_mincov15.csv")
+write.csv(sig_cpgs_chr1, file = "/data/path/sig_CpGs_chr1_mincov0_noSNP.csv")
 #reperformed above separately for each chromosome and then put together
 
