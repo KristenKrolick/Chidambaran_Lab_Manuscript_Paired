@@ -4,258 +4,100 @@
 ################1) Grep the bismark cov files for the methylation values, when inside the direcotry containing all of the bismark coverage files of interest, submit the following .sh to cluster:
 #!/bin/bash
 #BSUB -W 30:00
-#BSUB -M 100000
-#BSUB -n 1
+#BSUB -M 150000
+#BSUB -n 6
 #BSUB -R "span[hosts=1]"
-#BSUB -J "grepAll"
-#BSUB -o /data/path/output/%J.out
-#BSUB -e /data/path/error/%J.err
+#BSUB -J "grep -wAll"
+#BSUB -o /data/VidyaCLab/Kristen/bam/log/output/%J.out
+#BSUB -e /data/VidyaCLab/Kristen/bam/log/error/%J.err
 
-grep "chr1" *.cov | grep -w "9274655" > chr1_9274655.txt
-grep "chr1" *.cov | grep -w "14169200" > chr1_14169200.txt
-grep "chr1" *.cov | grep -w "73246129" > chr1_73246129.txt
-grep "chr1" *.cov | grep -w "171618961" > chr1_171618961.txt
-grep "chr1" *.cov | grep -w "200342117" > chr1_200342117.txt
-grep "chr1" *.cov | grep -w "241979688" > chr1_241979688.txt
-grep "chr1" *.cov | grep -w "241982049" > chr1_241982049.txt
-grep "chr1" *.cov | grep -w "242438104" > chr1_242438104.txt
-grep "chr2" *.cov | grep -w "1103422" > chr2_1103422.txt
-grep "chr2" *.cov | grep -w "1453055" > chr2_1453055.txt
-grep "chr2" *.cov | grep -w "8337046" > chr2_8337046.txt
-grep "chr2" *.cov | grep -w "18716226" > chr2_18716226.txt
-grep "chr2" *.cov | grep -w "18716227" > chr2_18716227.txt
-grep "chr2" *.cov | grep -w "23689842" > chr2_23689842.txt
-grep "chr2" *.cov | grep -w "33971874" > chr2_33971874.txt
-grep "chr2" *.cov | grep -w "36316052" > chr2_36316052.txt
-grep "chr2" *.cov | grep -w "36316053" > chr2_36316053.txt
-grep "chr2" *.cov | grep -w "105963661" > chr2_105963661.txt
-grep "chr2" *.cov | grep -w "109426999" > chr2_109426999.txt
-grep "chr2" *.cov | grep -w "109427000" > chr2_109427000.txt
-grep "chr2" *.cov | grep -w "120278756" > chr2_120278756.txt
-grep "chr2" *.cov | grep -w "120307340" > chr2_120307340.txt
-grep "chr2" *.cov | grep -w "123757464" > chr2_123757464.txt
-grep "chr2" *.cov | grep -w "127072723" > chr2_127072723.txt
-grep "chr2" *.cov | grep -w "178115257" > chr2_178115257.txt
-grep "chr2" *.cov | grep -w "191965522" > chr2_191965522.txt
-grep "chr2" *.cov | grep -w "199878168" > chr2_199878168.txt
-grep "chr2" *.cov | grep -w "212647491" > chr2_212647491.txt
-grep "chr2" *.cov | grep -w "230140266" > chr2_230140266.txt
-grep "chr2" *.cov | grep -w "230140267" > chr2_230140267.txt
-grep "chr3" *.cov | grep -w "1982146" > chr3_1982146.txt
-grep "chr3" *.cov | grep -w "2991916" > chr3_2991916.txt
-grep "chr3" *.cov | grep -w "18022227" > chr3_18022227.txt
-grep "chr3" *.cov | grep -w "21711474" > chr3_21711474.txt
-grep "chr3" *.cov | grep -w "21715984" > chr3_21715984.txt
-grep "chr3" *.cov | grep -w "30416796" > chr3_30416796.txt
-grep "chr3" *.cov | grep -w "30416797" > chr3_30416797.txt
-grep "chr3" *.cov | grep -w "64194266" > chr3_64194266.txt
-grep "chr3" *.cov | grep -w "64237060" > chr3_64237060.txt
-grep "chr3" *.cov | grep -w "64987467" > chr3_64987467.txt
-grep "chr3" *.cov | grep -w "94366900" > chr3_94366900.txt
-grep "chr3" *.cov | grep -w "133978660" > chr3_133978660.txt
-grep "chr3" *.cov | grep -w "134085113" > chr3_134085113.txt
-grep "chr3" *.cov | grep -w "134091677" > chr3_134091677.txt
-grep "chr3" *.cov | grep -w "134234291" > chr3_134234291.txt
-grep "chr3" *.cov | grep -w "149633846" > chr3_149633846.txt
-grep "chr3" *.cov | grep -w "157866730" > chr3_157866730.txt
-grep "chr3" *.cov | grep -w "171092237" > chr3_171092237.txt
-grep "chr3" *.cov | grep -w "182406313" > chr3_182406313.txt
-grep "chr3" *.cov | grep -w "183121725" > chr3_183121725.txt
-grep "chr4" *.cov | grep -w "7051260" > chr4_7051260.txt
-grep "chr4" *.cov | grep -w "24894850" > chr4_24894850.txt
-grep "chr4" *.cov | grep -w "27927176" > chr4_27927176.txt
-grep "chr4" *.cov | grep -w "28342281" > chr4_28342281.txt
-grep "chr4" *.cov | grep -w "36359348" > chr4_36359348.txt
-grep "chr4" *.cov | grep -w "56281504" > chr4_56281504.txt
-grep "chr4" *.cov | grep -w "56876001" > chr4_56876001.txt
-grep "chr4" *.cov | grep -w "59556807" > chr4_59556807.txt
-grep "chr4" *.cov | grep -w "63803376" > chr4_63803376.txt
-grep "chr4" *.cov | grep -w "63962131" > chr4_63962131.txt
-grep "chr4" *.cov | grep -w "68982155" > chr4_68982155.txt
-grep "chr4" *.cov | grep -w "81186181" > chr4_81186181.txt
-grep "chr4" *.cov | grep -w "86453792" > chr4_86453792.txt
-grep "chr4" *.cov | grep -w "86786523" > chr4_86786523.txt
-grep "chr4" *.cov | grep -w "101199297" > chr4_101199297.txt
-grep "chr4" *.cov | grep -w "113919322" > chr4_113919322.txt
-grep "chr4" *.cov | grep -w "120232895" > chr4_120232895.txt
-grep "chr4" *.cov | grep -w "124876733" > chr4_124876733.txt
-grep "chr4" *.cov | grep -w "124897604" > chr4_124897604.txt
-grep "chr4" *.cov | grep -w "135165729" > chr4_135165729.txt
-grep "chr4" *.cov | grep -w "179990241" > chr4_179990241.txt
-grep "chr4" *.cov | grep -w "184770735" > chr4_184770735.txt
-grep "chr4" *.cov | grep -w "189506293" > chr4_189506293.txt
-grep "chr5" *.cov | grep -w "1746701" > chr5_1746701.txt
-grep "chr5" *.cov | grep -w "16656063" > chr5_16656063.txt
-grep "chr5" *.cov | grep -w "16656149" > chr5_16656149.txt
-grep "chr5" *.cov | grep -w "23232353" > chr5_23232353.txt
-grep "chr5" *.cov | grep -w "37669896" > chr5_37669896.txt
-grep "chr5" *.cov | grep -w "37689049" > chr5_37689049.txt
-grep "chr5" *.cov | grep -w "37702804" > chr5_37702804.txt
-grep "chr5" *.cov | grep -w "101805802" > chr5_101805802.txt
-grep "chr5" *.cov | grep -w "124965567" > chr5_124965567.txt
-grep "chr6" *.cov | grep -w "12757190" > chr6_12757190.txt
-grep "chr6" *.cov | grep -w "31003689" > chr6_31003689.txt
-grep "chr6" *.cov | grep -w "34483067" > chr6_34483067.txt
-grep "chr6" *.cov | grep -w "39214624" > chr6_39214624.txt
-grep "chr6" *.cov | grep -w "39216264" > chr6_39216264.txt
-grep "chr6" *.cov | grep -w "46925618" > chr6_46925618.txt
-grep "chr6" *.cov | grep -w "54498952" > chr6_54498952.txt
-grep "chr6" *.cov | grep -w "54508582" > chr6_54508582.txt
-grep "chr6" *.cov | grep -w "54549293" > chr6_54549293.txt
-grep "chr6" *.cov | grep -w "72187509" > chr6_72187509.txt
-grep "chr6" *.cov | grep -w "89302716" > chr6_89302716.txt
-grep "chr6" *.cov | grep -w "95462683" > chr6_95462683.txt
-grep "chr6" *.cov | grep -w "95466863" > chr6_95466863.txt
-grep "chr6" *.cov | grep -w "95497160" > chr6_95497160.txt
-grep "chr6" *.cov | grep -w "95497161" > chr6_95497161.txt
-grep "chr6" *.cov | grep -w "95527519" > chr6_95527519.txt
-grep "chr6" *.cov | grep -w "129172967" > chr6_129172967.txt
-grep "chr6" *.cov | grep -w "129173034" > chr6_129173034.txt
-grep "chr6" *.cov | grep -w "129304288" > chr6_129304288.txt
-grep "chr6" *.cov | grep -w "134259737" > chr6_134259737.txt
-grep "chr6" *.cov | grep -w "134459061" > chr6_134459061.txt
-grep "chr6" *.cov | grep -w "152644773" > chr6_152644773.txt
-grep "chr6" *.cov | grep -w "153781299" > chr6_153781299.txt
-grep "chr6" *.cov | grep -w "153781300" > chr6_153781300.txt
-grep "chr6" *.cov | grep -w "153787354" > chr6_153787354.txt
-grep "chr6" *.cov | grep -w "153837780" > chr6_153837780.txt
-grep "chr6" *.cov | grep -w "153840410" > chr6_153840410.txt
-grep "chr6" *.cov | grep -w "153842833" > chr6_153842833.txt
-grep "chr6" *.cov | grep -w "153855717" > chr6_153855717.txt
-grep "chr7" *.cov | grep -w "34436035" > chr7_34436035.txt
-grep "chr7" *.cov | grep -w "51303412" > chr7_51303412.txt
-grep "chr7" *.cov | grep -w "51360694" > chr7_51360694.txt
-grep "chr7" *.cov | grep -w "51360695" > chr7_51360695.txt
-grep "chr7" *.cov | grep -w "51372165" > chr7_51372165.txt
-grep "chr7" *.cov | grep -w "71226925" > chr7_71226925.txt
-grep "chr7" *.cov | grep -w "77463491" > chr7_77463491.txt
-grep "chr7" *.cov | grep -w "81908993" > chr7_81908993.txt
-grep "chr7" *.cov | grep -w "81920542" > chr7_81920542.txt
-grep "chr7" *.cov | grep -w "92963348" > chr7_92963348.txt
-grep "chr7" *.cov | grep -w "106150519" > chr7_106150519.txt
-grep "chr7" *.cov | grep -w "113294015" > chr7_113294015.txt
-grep "chr7" *.cov | grep -w "113368217" > chr7_113368217.txt
-grep "chr7" *.cov | grep -w "122751041" > chr7_122751041.txt
-grep "chr8" *.cov | grep -w "467023" > chr8_467023.txt
-grep "chr8" *.cov | grep -w "1843267" > chr8_1843267.txt
-grep "chr8" *.cov | grep -w "1843268" > chr8_1843268.txt
-grep "chr8" *.cov | grep -w "3290993" > chr8_3290993.txt
-grep "chr8" *.cov | grep -w "41484614" > chr8_41484614.txt
-grep "chr8" *.cov | grep -w "52853704" > chr8_52853704.txt
-grep "chr8" *.cov | grep -w "56768290" > chr8_56768290.txt
-grep "chr8" *.cov | grep -w "56770909" > chr8_56770909.txt
-grep "chr8" *.cov | grep -w "62636601" > chr8_62636601.txt
-grep "chr8" *.cov | grep -w "64942691" > chr8_64942691.txt
-grep "chr8" *.cov | grep -w "67864710" > chr8_67864710.txt
-grep "chr8" *.cov | grep -w "69935506" > chr8_69935506.txt
-grep "chr8" *.cov | grep -w "81089126" > chr8_81089126.txt
-grep "chr8" *.cov | grep -w "91915869" > chr8_91915869.txt
-grep "chr8" *.cov | grep -w "94557821" > chr8_94557821.txt
-grep "chr8" *.cov | grep -w "112775531" > chr8_112775531.txt
-grep "chr8" *.cov | grep -w "123446057" > chr8_123446057.txt
-grep "chr8" *.cov | grep -w "128744769" > chr8_128744769.txt
-grep "chr8" *.cov | grep -w "128763709" > chr8_128763709.txt
-grep "chr8" *.cov | grep -w "129537298" > chr8_129537298.txt
-grep "chr8" *.cov | grep -w "132982275" > chr8_132982275.txt
-grep "chr8" *.cov | grep -w "132982276" > chr8_132982276.txt
-grep "chr8" *.cov | grep -w "133933890" > chr8_133933890.txt
-grep "chr8" *.cov | grep -w "139472094" > chr8_139472094.txt
-grep "chr9" *.cov | grep -w "26611797" > chr9_26611797.txt
-grep "chr9" *.cov | grep -w "89137859" > chr9_89137859.txt
-grep "chr9" *.cov | grep -w "97902450" > chr9_97902450.txt
-grep "chr10" *.cov | grep -w "3215659" > chr10_3215659.txt
-grep "chr10" *.cov | grep -w "5032760" > chr10_5032760.txt
-grep "chr10" *.cov | grep -w "48636236" > chr10_48636236.txt
-grep "chr10" *.cov | grep -w "53765082" > chr10_53765082.txt
-grep "chr10" *.cov | grep -w "125524087" > chr10_125524087.txt
-grep "chr10" *.cov | grep -w "132115199" > chr10_132115199.txt
-grep "chr11" *.cov | grep -w "19443953" > chr11_19443953.txt
-grep "chr11" *.cov | grep -w "30759316" > chr11_30759316.txt
-grep "chr11" *.cov | grep -w "54909395" > chr11_54909395.txt
-grep "chr11" *.cov | grep -w "69883069" > chr11_69883069.txt
-grep "chr11" *.cov | grep -w "90901906" > chr11_90901906.txt
-grep "chr11" *.cov | grep -w "93065016" > chr11_93065016.txt
-grep "chr11" *.cov | grep -w "123752434" > chr11_123752434.txt
-grep "chr11" *.cov | grep -w "125148873" > chr11_125148873.txt
-grep "chr12" *.cov | grep -w "24594735" > chr12_24594735.txt
-grep "chr12" *.cov | grep -w "24867444" > chr12_24867444.txt
-grep "chr12" *.cov | grep -w "27367875" > chr12_27367875.txt
-grep "chr12" *.cov | grep -w "28115510" > chr12_28115510.txt
-grep "chr12" *.cov | grep -w "52406865" > chr12_52406865.txt
-grep "chr12" *.cov | grep -w "52446252" > chr12_52446252.txt
-grep "chr12" *.cov | grep -w "115521586" > chr12_115521586.txt
-grep "chr12" *.cov | grep -w "117441177" > chr12_117441177.txt
-grep "chr13" *.cov | grep -w "17630391" > chr13_17630391.txt
-grep "chr13" *.cov | grep -w "22865529" > chr13_22865529.txt
-grep "chr13" *.cov | grep -w "25784338" > chr13_25784338.txt
-grep "chr13" *.cov | grep -w "36245940" > chr13_36245940.txt
-grep "chr13" *.cov | grep -w "47484177" > chr13_47484177.txt
-grep "chr13" *.cov | grep -w "52044053" > chr13_52044053.txt
-grep "chr13" *.cov | grep -w "80020915" > chr13_80020915.txt
-grep "chr13" *.cov | grep -w "86410472" > chr13_86410472.txt
-grep "chr13" *.cov | grep -w "94890749" > chr13_94890749.txt
-grep "chr13" *.cov | grep -w "94902111" > chr13_94902111.txt
-grep "chr13" *.cov | grep -w "94903868" > chr13_94903868.txt
-grep "chr13" *.cov | grep -w "94912357" > chr13_94912357.txt
-grep "chr13" *.cov | grep -w "94926385" > chr13_94926385.txt
-grep "chr13" *.cov | grep -w "112650702" > chr13_112650702.txt
-grep "chr14" *.cov | grep -w "47383824" > chr14_47383824.txt
-grep "chr14" *.cov | grep -w "62940221" > chr14_62940221.txt
-grep "chr15" *.cov | grep -w "25915146" > chr15_25915146.txt
-grep "chr15" *.cov | grep -w "57099135" > chr15_57099135.txt
-grep "chr15" *.cov | grep -w "68402047" > chr15_68402047.txt
-grep "chr15" *.cov | grep -w "78357334" > chr15_78357334.txt
-grep "chr16" *.cov | grep -w "1999728" > chr16_1999728.txt
-grep "chr16" *.cov | grep -w "4157931" > chr16_4157931.txt
-grep "chr16" *.cov | grep -w "4157934" > chr16_4157934.txt
-grep "chr16" *.cov | grep -w "4157935" > chr16_4157935.txt
-grep "chr16" *.cov | grep -w "8441752" > chr16_8441752.txt
-grep "chr16" *.cov | grep -w "8484488" > chr16_8484488.txt
-grep "chr16" *.cov | grep -w "59056192" > chr16_59056192.txt
-grep "chr16" *.cov | grep -w "59174524" > chr16_59174524.txt
-grep "chr16" *.cov | grep -w "87076938" > chr16_87076938.txt
-grep "chr16" *.cov | grep -w "87191659" > chr16_87191659.txt
-grep "chr17" *.cov | grep -w "72651716" > chr17_72651716.txt
-grep "chr17" *.cov | grep -w "80332509" > chr17_80332509.txt
-grep "chr17" *.cov | grep -w "80334335" > chr17_80334335.txt
-grep "chr17" *.cov | grep -w "81477233" > chr17_81477233.txt
-grep "chr18" *.cov | grep -w "25564854" > chr18_25564854.txt
-grep "chr18" *.cov | grep -w "25601594" > chr18_25601594.txt
-grep "chr18" *.cov | grep -w "43432664" > chr18_43432664.txt
-grep "chr18" *.cov | grep -w "53678611" > chr18_53678611.txt
-grep "chr18" *.cov | grep -w "60038206" > chr18_60038206.txt
-grep "chr18" *.cov | grep -w "66021148" > chr18_66021148.txt
-grep "chr18" *.cov | grep -w "74203337" > chr18_74203337.txt
-grep "chr19" *.cov | grep -w "21607128" > chr19_21607128.txt
-grep "chr19" *.cov | grep -w "32842248" > chr19_32842248.txt
-grep "chr19" *.cov | grep -w "38835192" > chr19_38835192.txt
-grep "chr19" *.cov | grep -w "54687753" > chr19_54687753.txt
-grep "chr20" *.cov | grep -w "10034243" > chr20_10034243.txt
-grep "chr20" *.cov | grep -w "12867279" > chr20_12867279.txt
-grep "chr20" *.cov | grep -w "17615839" > chr20_17615839.txt
-grep "chr20" *.cov | grep -w "20350485" > chr20_20350485.txt
-grep "chr20" *.cov | grep -w "24187241" > chr20_24187241.txt
-grep "chr20" *.cov | grep -w "24208092" > chr20_24208092.txt
-grep "chr20" *.cov | grep -w "24214552" > chr20_24214552.txt
-grep "chr20" *.cov | grep -w "24222748" > chr20_24222748.txt
-grep "chr20" *.cov | grep -w "24228521" > chr20_24228521.txt
-grep "chr20" *.cov | grep -w "24234390" > chr20_24234390.txt
-grep "chr20" *.cov | grep -w "40642761" > chr20_40642761.txt
-grep "chr20" *.cov | grep -w "45305320" > chr20_45305320.txt
-grep "chr20" *.cov | grep -w "45305321" > chr20_45305321.txt
-grep "chr20" *.cov | grep -w "45307570" > chr20_45307570.txt
-grep "chr20" *.cov | grep -w "45307571" > chr20_45307571.txt
-grep "chr20" *.cov | grep -w "50879584" > chr20_50879584.txt
-grep "chr20" *.cov | grep -w "51376342" > chr20_51376342.txt
-grep "chr20" *.cov | grep -w "51376380" > chr20_51376380.txt
-grep "chr20" *.cov | grep -w "55639248" > chr20_55639248.txt
-grep "chr20" *.cov | grep -w "55826977" > chr20_55826977.txt
-grep "chr20" *.cov | grep -w "55834560" > chr20_55834560.txt
-grep "chr20" *.cov | grep -w "58465007" > chr20_58465007.txt
-grep "chr20" *.cov | grep -w "61841324" > chr20_61841324.txt
-grep "chr20" *.cov | grep -w "61850032" > chr20_61850032.txt
-grep "chr20" *.cov | grep -w "61850561" > chr20_61850561.txt
-grep "chr22" *.cov | grep -w "17050398" > chr22_17050398.txt
+grep -w "chr1" *.cov | grep -w "14169200" > chr1_14169200.txt
+grep -w "chr1" *.cov | grep -w "73246129" > chr1_73246129.txt
+grep -w "chr1" *.cov | grep -w "200342117" > chr1_200342117.txt
+grep -w "chr1" *.cov | grep -w "241979688" > chr1_241979688.txt
+grep -w "chr2" *.cov | grep -w "8337046" > chr2_8337046.txt
+grep -w "chr2" *.cov | grep -w "18716227" > chr2_18716227.txt
+grep -w "chr3" *.cov | grep -w "18022227" > chr3_18022227.txt
+grep -w "chr3" *.cov | grep -w "30416796" > chr3_30416796.txt
+grep -w "chr3" *.cov | grep -w "64194266" > chr3_64194266.txt
+grep -w "chr3" *.cov | grep -w "64237060" > chr3_64237060.txt
+grep -w "chr3" *.cov | grep -w "64987467" > chr3_64987467.txt
+grep -w "chr3" *.cov | grep -w "134085113" > chr3_134085113.txt
+grep -w "chr3" *.cov | grep -w "134234291" > chr3_134234291.txt
+grep -w "chr3" *.cov | grep -w "149633846" > chr3_149633846.txt
+grep -w "chr3" *.cov | grep -w "183121725" > chr3_183121725.txt
+grep -w "chr4" *.cov | grep -w "27927176" > chr4_27927176.txt
+grep -w "chr4" *.cov | grep -w "56876001" > chr4_56876001.txt
+grep -w "chr4" *.cov | grep -w "59556807" > chr4_59556807.txt
+grep -w "chr4" *.cov | grep -w "63962131" > chr4_63962131.txt
+grep -w "chr4" *.cov | grep -w "120232895" > chr4_120232895.txt
+grep -w "chr4" *.cov | grep -w "179990241" > chr4_179990241.txt
+grep -w "chr4" *.cov | grep -w "184770735" > chr4_184770735.txt
+grep -w "chr5" *.cov | grep -w "23232353" > chr5_23232353.txt
+grep -w "chr5" *.cov | grep -w "37689049" > chr5_37689049.txt
+grep -w "chr5" *.cov | grep -w "124965567" > chr5_124965567.txt
+grep -w "chr6" *.cov | grep -w "95466863" > chr6_95466863.txt
+grep -w "chr6" *.cov | grep -w "129172967" > chr6_129172967.txt
+grep -w "chr6" *.cov | grep -w "129304288" > chr6_129304288.txt
+grep -w "chr6" *.cov | grep -w "153781300" > chr6_153781300.txt
+grep -w "chr6" *.cov | grep -w "153787354" > chr6_153787354.txt
+grep -w "chr7" *.cov | grep -w "51360695" > chr7_51360695.txt
+grep -w "chr7" *.cov | grep -w "51372165" > chr7_51372165.txt
+grep -w "chr7" *.cov | grep -w "81920542" > chr7_81920542.txt
+grep -w "chr7" *.cov | grep -w "92963348" > chr7_92963348.txt
+grep -w "chr7" *.cov | grep -w "113294015" > chr7_113294015.txt
+grep -w "chr7" *.cov | grep -w "113368217" > chr7_113368217.txt
+grep -w "chr7" *.cov | grep -w "122751041" > chr7_122751041.txt
+grep -w "chr8" *.cov | grep -w "467023" > chr8_467023.txt
+grep -w "chr8" *.cov | grep -w "1843268" > chr8_1843268.txt
+grep -w "chr8" *.cov | grep -w "62636601" > chr8_62636601.txt
+grep -w "chr8" *.cov | grep -w "67864710" > chr8_67864710.txt
+grep -w "chr8" *.cov | grep -w "81089126" > chr8_81089126.txt
+grep -w "chr8" *.cov | grep -w "91915869" > chr8_91915869.txt
+grep -w "chr8" *.cov | grep -w "112775531" > chr8_112775531.txt
+grep -w "chr8" *.cov | grep -w "128744769" > chr8_128744769.txt
+grep -w "chr8" *.cov | grep -w "139472094" > chr8_139472094.txt
+grep -w "chr9" *.cov | grep -w "97902450" > chr9_97902450.txt
+grep -w "chr12" *.cov | grep -w "24594735" > chr12_24594735.txt
+grep -w "chr12" *.cov | grep -w "24867444" > chr12_24867444.txt
+grep -w "chr12" *.cov | grep -w "27367875" > chr12_27367875.txt
+grep -w "chr12" *.cov | grep -w "28115510" > chr12_28115510.txt
+grep -w "chr13" *.cov | grep -w "17630391" > chr13_17630391.txt
+grep -w "chr13" *.cov | grep -w "25784338" > chr13_25784338.txt
+grep -w "chr13" *.cov | grep -w "47484177" > chr13_47484177.txt
+grep -w "chr13" *.cov | grep -w "52044053" > chr13_52044053.txt
+grep -w "chr13" *.cov | grep -w "86410472" > chr13_86410472.txt
+grep -w "chr13" *.cov | grep -w "94902111" > chr13_94902111.txt
+grep -w "chr13" *.cov | grep -w "94926385" > chr13_94926385.txt
+grep -w "chr14" *.cov | grep -w "47383824" > chr14_47383824.txt
+grep -w "chr14" *.cov | grep -w "62940221" > chr14_62940221.txt
+grep -w "chr15" *.cov | grep -w "25915146" > chr15_25915146.txt
+grep -w "chr15" *.cov | grep -w "57099135" > chr15_57099135.txt
+grep -w "chr15" *.cov | grep -w "68402047" > chr15_68402047.txt
+grep -w "chr15" *.cov | grep -w "78357334" > chr15_78357334.txt
+grep -w "chr16" *.cov | grep -w "1999728" > chr16_1999728.txt
+grep -w "chr16" *.cov | grep -w "4157934" > chr16_4157934.txt
+grep -w "chr16" *.cov | grep -w "8441752" > chr16_8441752.txt
+grep -w "chr16" *.cov | grep -w "8484488" > chr16_8484488.txt
+grep -w "chr16" *.cov | grep -w "59056192" > chr16_59056192.txt
+grep -w "chr16" *.cov | grep -w "87191659" > chr16_87191659.txt
+grep -w "chr17" *.cov | grep -w "72651716" > chr17_72651716.txt
+grep -w "chr17" *.cov | grep -w "80332509" > chr17_80332509.txt
+grep -w "chr17" *.cov | grep -w "80334335" > chr17_80334335.txt
+grep -w "chr17" *.cov | grep -w "81477233" > chr17_81477233.txt
+grep -w "chr18" *.cov | grep -w "53678611" > chr18_53678611.txt
+grep -w "chr18" *.cov | grep -w "60038206" > chr18_60038206.txt
+grep -w "chr18" *.cov | grep -w "66021148" > chr18_66021148.txt
+grep -w "chr19" *.cov | grep -w "32842248" > chr19_32842248.txt
+grep -w "chr19" *.cov | grep -w "54687753" > chr19_54687753.txt
+grep -w "chr20" *.cov | grep -w "45305321" > chr20_45305321.txt
+grep -w "chr20" *.cov | grep -w "45307571" > chr20_45307571.txt
+grep -w "chr20" *.cov | grep -w "51376380" > chr20_51376380.txt
+grep -w "chr20" *.cov | grep -w "55826977" > chr20_55826977.txt
+grep -w "chr20" *.cov | grep -w "61841324" > chr20_61841324.txt
+grep -w "chr20" *.cov | grep -w "61850032" > chr20_61850032.txt
+
+
 
 ###################2) Compile .txt files into one Excel: comumn 1 being the chomosome sites (from name of each .txt file), and heading row being the sample IDs, filled in with the methylation values (from column 4 of .txt files)
 ##to submit as a job, with all txt files from above in a certain directory, and .bat file being:
